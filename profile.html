@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        .profile-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .profile-container img {
+            margin-right: 20px;
+            width: 100px;
+            height: 100px;
+        }
+        .name-color {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Your Profile</h1>
+    <div id="profile" class="profile-container"></div>
+
+    <script>
+        const name = localStorage.getItem('name') || 'Guest';
+        const gender = localStorage.getItem('gender') || 'unknown';
+        const color = localStorage.getItem('color') || 'black'; 
+        const visitCount = localStorage.getItem('visitCount') || 0;
+
+        const profileDiv = document.getElementById('profile');
+
+        let genderImage = '';
+        if (gender === 'male') {
+            genderImage = 'male.jpg';
+        } else if (gender === 'female') {
+            genderImage = 'female.jpg';
+        } else {
+            genderImage = 'default.jpg'; // Fallback image
+        }
+
+        profileDiv.innerHTML = `
+            <img src="${genderImage}" alt="${gender}">
+            <div>
+                <p><h2 class="name-color" style="color: ${color};">${name}<h2> you have visited this site ${visitCount} times.</p>
+            </div>
+        `;
+    </script>
+</body>
+</html>

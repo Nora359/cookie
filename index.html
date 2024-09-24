@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Form</title>
+    <style>
+        .gender-option {
+            display: inline-block;
+            cursor: pointer;
+        }
+        .gender-option img {
+            width: 50px;
+            height: 50px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Enter Your Profile Information</h1>
+    <form id="profileForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+
+        <label>Gender:</label><br>
+        <div class="gender-option">
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male"><img src="male.jpg" alt="Male"></label>
+        </div>
+        <div class="gender-option">
+            <input type="radio" id="female" name="gender" value="female" required>
+            <label for="female"><img src="female.jpg" alt="Female"></label>
+        </div>
+        <br><br>
+
+        <label for="color">Favorite Color:</label>
+        <select id="color" name="color" required>
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Yellow">Yellow</option>
+        </select><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const color = document.getElementById('color').value;
+
+            localStorage.setItem('name', name);
+            localStorage.setItem('age', age);
+            localStorage.setItem('gender', gender);
+            localStorage.setItem('color', color);
+
+            let visitCount = localStorage.getItem('visitCount');
+            if (visitCount) {
+                visitCount = parseInt(visitCount) + 1;
+            } else {
+                visitCount = 1;
+            }
+            localStorage.setItem('visitCount', visitCount);
+
+            window.location.href = 'profile.html';
+        });
+    </script>
+</body>
+</html>

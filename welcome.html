@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.welcome-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="welcome-container">
+  <h2>Welcome!</h2>
+
+  <p>
+    <span id="name"></span>, you are <span id="age"></span> years old.
+    Your favorite color is <span id="color"></span> and your gender is <span id="gender"></span>.
+  </p>
+
+  <p>
+    This is your <span id="visitCount"></span> visit.
+  </p>
+</div>
+
+<script>
+// Get data from cookies
+const name = document.cookie.split('; ').find(row => row.startsWith('name=')).split('=')[1];
+const age = document.cookie.split('; ').find(row => row.startsWith('age=')).split('=')[1];
+const color = document.cookie.split('; ').find(row => row.startsWith('color=')).split('=')[1];
+const gender = document.cookie.split('; ').find(row => row.startsWith('gender=')).split('=')[1];
+const visitCount = document.cookie.split('; ').find(row => row.startsWith('visitCount=')).split('=')[1];
+
+// Display data on the page
+document.getElementById('name').textContent = name;
+document.getElementById('age').textContent = age;
+document.getElementById('color').textContent = color;
+document.getElementById('gender').textContent = gender;
+document.getElementById('visitCount').textContent = visitCount;
+</script>
+
+</body>
+</html>
